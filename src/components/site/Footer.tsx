@@ -1,14 +1,21 @@
-import { Compass, Mail, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 import { navLinks, EMAIL_ADDRESS, PHONE_DISPLAY, whatsappLink } from "@/lib/site-data";
+import logoAsset from "@/assets/destinations-planner-logo.png.asset.json";
 
 export function Footer() {
   return (
     <footer className="border-t border-border bg-sand">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-3">
         <div>
-          <div className="flex items-center gap-2 font-display text-lg font-semibold">
-            <Compass className="size-6 text-primary" aria-hidden="true" />
-            Destinations Planner
+          <div className="flex items-center gap-2.5 font-display text-lg font-semibold">
+            <img
+              src={logoAsset.url}
+              alt=""
+              width="56"
+              height="56"
+              className="size-14 shrink-0 object-contain"
+            />
+            <span>Destinations Planner</span>
           </div>
           <p className="mt-3 max-w-sm text-sm text-muted-foreground">
             Personalised tour packages and car rentals across India — for families, couples,

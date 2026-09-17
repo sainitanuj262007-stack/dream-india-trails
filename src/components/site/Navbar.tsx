@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Menu, X, Compass } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { navLinks } from "@/lib/site-data";
+import logoAsset from "@/assets/destinations-planner-logo.png.asset.json";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -27,11 +28,17 @@ export function Navbar() {
       >
         <a
           href="#home"
-          className={`flex min-w-0 items-center gap-2 font-display text-lg font-semibold tracking-tight ${
+          className={`flex min-w-0 items-center gap-2.5 font-display text-lg font-semibold ${
             scrolled || open ? "text-foreground" : "text-primary-foreground"
           }`}
         >
-          <Compass className="size-6 shrink-0 text-primary" aria-hidden="true" />
+          <img
+            src={logoAsset.url}
+            alt=""
+            width="48"
+            height="48"
+            className="size-11 shrink-0 object-contain"
+          />
           <span className="truncate">Destinations Planner</span>
         </a>
 
