@@ -33,7 +33,11 @@ export function EnquiryForm() {
     ev.preventDefault();
     const e = validate();
     setErrors(e);
-    if (Object.keys(e).length === 0) setSent(true);
+    if (Object.keys(e).length === 0) {
+      const link = whatsappLink(buildWhatsAppMessage(values));
+      window.open(link, "_blank", "noopener,noreferrer");
+      setSent(true);
+    }
   };
 
   const field =
