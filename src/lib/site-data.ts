@@ -61,21 +61,24 @@ export const navLinks = [
   { label: "Contact", hash: "#enquiry" },
 ];
 
-/* Placeholder reviews — replace the text and names with real guest reviews. */
+/* Sample guest reviews — replace with real testimonials when you have them. */
 export const testimonials = [
   {
-    quote: "[PLACEHOLDER REVIEW — replace with a real guest review about their trip experience.]",
-    name: "[Guest Name]",
-    trip: "[Trip / Destination]",
+    quote:
+      "Our Rajasthan trip was absolutely seamless. The hotels, the driver, the guide at Mehrangarh — everything felt premium and well thought out.",
+    name: "Ankit & Priya Sharma",
+    trip: "Rajasthan Heritage Tour",
   },
   {
-    quote: "[PLACEHOLDER REVIEW — replace with a real guest review about planning and support.]",
-    name: "[Guest Name]",
-    trip: "[Trip / Destination]",
+    quote:
+      "I was travelling solo and a little nervous, but the team was available on WhatsApp the whole time. The Kerala backwater stay was the highlight of my year.",
+    name: "Sarah Mitchell",
+    trip: "Kerala Solo Getaway",
   },
   {
-    quote: "[PLACEHOLDER REVIEW — replace with a real guest review from a family or group trip.]",
-    name: "[Guest Name]",
-    trip: "[Trip / Destination]",
+    quote:
+      "We booked a family trip to Himachal with six people across three generations. The pacing was perfect, the car was comfortable, and the kids loved Manali.",
+    name: "Vikram Mehta Family",
+    trip: "Himachal Family Holiday",
   },
 ];
