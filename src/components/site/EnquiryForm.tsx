@@ -2,6 +2,16 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { whatsappLink } from "@/lib/site-data";
 
+const buildWhatsAppMessage = (values: { name: string; whatsapp: string; email: string; message: string }) => {
+  return `Hi Destinations Planner! I'm ${values.name.trim()} and I'd like to plan a trip to India.
+
+📧 Email: ${values.email.trim()}
+📱 WhatsApp: ${values.whatsapp.trim()}
+
+📝 Trip details:
+${values.message.trim() || "Not shared yet — I'd love to discuss ideas."}`;
+};
+
 type Errors = Partial<Record<"name" | "whatsapp" | "email", string>>;
 
 export function EnquiryForm() {
@@ -23,29 +33,34 @@ export function EnquiryForm() {
     ev.preventDefault();
     const e = validate();
     setErrors(e);
-    if (Object.keys(e).length === 0) setSent(true);
+    if (Object.keys(e).length === 0) {
+      const link = whatsappLink(buildWhatsAppMessage(values));
+      window.open(link, "_blank", "noopener,noreferrer");
+      setSent(true);
+    }
   };
 
   const field =
     "mt-1.5 w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring";
 
   if (sent) {
+    const enquiryLink = whatsappLink(buildWhatsAppMessage(values));
     return (
       <div className="rounded-2xl border border-border bg-card p-8 text-center shadow-card">
         <CheckCircle2 className="mx-auto size-10 text-teal" aria-hidden="true" />
         <h3 className="mt-4 text-2xl font-semibold">Thank you, {values.name.split(" ")[0]}!</h3>
         <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
-          Your enquiry has been received. A travel planner will get back to you on WhatsApp or email
-          with a suggested itinerary.
+          WhatsApp has opened with your enquiry details. Tap send and a travel planner will reply with
+          a suggested itinerary.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <a
-            href={whatsappLink(`Hi, I'm ${values.name}. I just submitted an enquiry on your website.`)}
+            href={enquiryLink}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-11 items-center rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground"
           >
-            Continue on WhatsApp
+            Open WhatsApp again
           </a>
           <button
             type="button"
