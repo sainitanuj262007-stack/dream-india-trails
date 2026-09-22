@@ -18,7 +18,7 @@ import northeast from "@/assets/dest-northeast.jpg";
  * WHATSAPP_NUMBER must be digits only, with country code (e.g. 919876543210)
  * ------------------------------------------------------------- */
 export const WHATSAPP_NUMBER = "919829183778";
-export const EMAIL_ADDRESS = "[ADD EMAIL ADDRESS]";
+export const EMAIL_ADDRESS = "dpemtr2020@gmail.com";
 export const PHONE_DISPLAY = "+91 98291 83778";
 
 export const whatsappLink = (message = "Hi! I'd like to plan a trip with Destinations Planner.") => {
