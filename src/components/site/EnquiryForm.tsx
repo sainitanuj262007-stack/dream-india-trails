@@ -2,6 +2,16 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { whatsappLink } from "@/lib/site-data";
 
+const buildWhatsAppMessage = (values: { name: string; whatsapp: string; email: string; message: string }) => {
+  return `Hi Destinations Planner! I'm ${values.name.trim()} and I'd like to plan a trip to India.
+
+📧 Email: ${values.email.trim()}
+📱 WhatsApp: ${values.whatsapp.trim()}
+
+📝 Trip details:
+${values.message.trim() || "Not shared yet — I'd love to discuss ideas."}`;
+};
+
 type Errors = Partial<Record<"name" | "whatsapp" | "email", string>>;
 
 export function EnquiryForm() {
