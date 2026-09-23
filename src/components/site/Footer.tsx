@@ -5,7 +5,7 @@ import logoAsset from "@/assets/destinations-planner-logo.png.asset.json";
 export function Footer() {
   return (
     <footer className="border-t border-border bg-sand">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-3">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-2.5 font-display text-lg font-semibold">
             <img
