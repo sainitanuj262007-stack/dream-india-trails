@@ -160,7 +160,7 @@ function TermsAndConditions() {
   );
 }
 
-function TermsSection({ title, children }: { title: string; children: React.ReactNode }) {
+function TermsSection({ title, children }: { title: string; children: ReactNode }) {
   return (
     <Reveal>
       <article className="space-y-4 leading-relaxed text-foreground">
