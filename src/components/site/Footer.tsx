@@ -38,6 +38,19 @@ export function Footer() {
           </ul>
         </nav>
 
+        <nav aria-label="Legal navigation">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+            Legal
+          </h2>
+          <ul className="mt-4 space-y-2">
+            <li>
+              <a href="/terms-and-conditions" className="text-sm hover:text-primary">
+                Terms & Conditions
+              </a>
+            </li>
+          </ul>
+        </nav>
+
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
             Get in touch
