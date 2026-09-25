@@ -26,7 +26,7 @@ export function EnquiryForm() {
     return e;
   };
 
-  const onSubmit = (ev: FormEvent) => {
+  const onSubmit = (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     const form = ev.currentTarget;
     const formData = new FormData(form);
