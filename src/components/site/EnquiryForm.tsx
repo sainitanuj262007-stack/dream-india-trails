@@ -1,5 +1,4 @@
 import { useState, type FormEvent } from "react";
-import { useNavigate } from "@tanstack/react-router";
 import { whatsappLink } from "@/lib/site-data";
 
 const buildWhatsAppMessage = (values: { name: string; whatsapp: string; email: string; message: string }) => {
@@ -17,8 +16,6 @@ type Errors = Partial<Record<"name" | "whatsapp" | "email", string>>;
 export function EnquiryForm() {
   const [values, setValues] = useState({ name: "", whatsapp: "", email: "", message: "" });
   const [errors, setErrors] = useState<Errors>({});
-  const navigate = useNavigate();
-
   const validate = () => {
     const e: Errors = {};
     if (values.name.trim().length < 2) e.name = "Please enter your full name.";
@@ -37,7 +34,7 @@ export function EnquiryForm() {
       const link = whatsappLink(buildWhatsAppMessage(values));
       sessionStorage.setItem("destinations-planner-enquiry-link", link);
       window.open(link, "_blank", "noopener,noreferrer");
-      navigate({ to: "/thank-you" });
+      window.location.assign("/thank-you");
     }
   };
 
