@@ -1,5 +1,4 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2 } from "lucide-react";
 import { whatsappLink } from "@/lib/site-data";
 
 const buildWhatsAppMessage = (values: { name: string; whatsapp: string; email: string; message: string }) => {
@@ -17,65 +16,38 @@ type Errors = Partial<Record<"name" | "whatsapp" | "email", string>>;
 export function EnquiryForm() {
   const [values, setValues] = useState({ name: "", whatsapp: "", email: "", message: "" });
   const [errors, setErrors] = useState<Errors>({});
-  const [sent, setSent] = useState(false);
-
-  const validate = () => {
+  const validate = (formValues = values) => {
     const e: Errors = {};
-    if (values.name.trim().length < 2) e.name = "Please enter your full name.";
-    const digits = values.whatsapp.replace(/\D/g, "");
+    if (formValues.name.trim().length < 2) e.name = "Please enter your full name.";
+    const digits = formValues.whatsapp.replace(/\D/g, "");
     if (digits.length < 10) e.whatsapp = "Enter a valid WhatsApp number with country code.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email.trim()))
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(formValues.email.trim()))
       e.email = "Enter a valid email address.";
     return e;
   };
 
-  const onSubmit = (ev: FormEvent) => {
+  const onSubmit = (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    const e = validate();
+    const form = ev.currentTarget;
+    const formData = new FormData(form);
+    const submittedValues = {
+      name: String(formData.get("name") ?? ""),
+      whatsapp: String(formData.get("whatsapp") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      message: String(formData.get("message") ?? ""),
+    };
+    const e = validate(submittedValues);
     setErrors(e);
     if (Object.keys(e).length === 0) {
-      const link = whatsappLink(buildWhatsAppMessage(values));
+      const link = whatsappLink(buildWhatsAppMessage(submittedValues));
+      sessionStorage.setItem("destinations-planner-enquiry-link", link);
       window.open(link, "_blank", "noopener,noreferrer");
-      setSent(true);
+      window.location.assign("/thank-you");
     }
   };
 
   const field =
     "mt-1.5 w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring";
-
-  if (sent) {
-    const enquiryLink = whatsappLink(buildWhatsAppMessage(values));
-    return (
-      <div className="rounded-2xl border border-border bg-card p-8 text-center shadow-card">
-        <CheckCircle2 className="mx-auto size-10 text-teal" aria-hidden="true" />
-        <h3 className="mt-4 text-2xl font-semibold">Thank you, {values.name.split(" ")[0]}!</h3>
-        <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
-          WhatsApp has opened with your enquiry details. Tap send and a travel planner will reply with
-          a suggested itinerary.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <a
-            href={enquiryLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground"
-          >
-            Open WhatsApp again
-          </a>
-          <button
-            type="button"
-            onClick={() => {
-              setValues({ name: "", whatsapp: "", email: "", message: "" });
-              setSent(false);
-            }}
-            className="inline-flex min-h-11 items-center rounded-full border border-border px-6 text-sm font-semibold"
-          >
-            Send another enquiry
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <form
