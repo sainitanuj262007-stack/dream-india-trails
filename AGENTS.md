@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep verified contact details in `src/lib/site-data.ts` as the single source for all contact links and legal pages, so updates stay consistent.
+- Use `LegalPageLayout` and `LegalSection` for legal routes, so their accessibility and styling stay aligned.
