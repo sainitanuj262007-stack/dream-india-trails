@@ -12,11 +12,9 @@ import ladakh from "@/assets/dest-ladakh.jpg";
 import varanasi from "@/assets/dest-varanasi.jpg";
 import northeast from "@/assets/dest-northeast.jpg";
 
-/* ---------------------------------------------------------------
- * EDIT THESE CONTACT DETAILS
- * Replace the placeholder text below with the real details.
- * WHATSAPP_NUMBER must be digits only, with country code (e.g. 919876543210)
- * ------------------------------------------------------------- */
+/* Verified business contact details supplied by the owner. Edit here to update
+ * the footer, legal pages, floating button and enquiry destination together.
+ * WHATSAPP_NUMBER uses digits only, including country code. */
 export const WHATSAPP_NUMBER = "919829183778";
 export const EMAIL_ADDRESS = "dpemtr2020@gmail.com";
 export const PHONE_DISPLAY = "+91 98291 83778";
