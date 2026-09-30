@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalContact, LegalPageLayout, LegalSection } from "@/components/site/LegalPageLayout";
 
 export const Route = createFileRoute("/terms-and-conditions")({
@@ -32,7 +32,7 @@ function TermsAndConditions() {
       <LegalSection title="Travel Disruptions and Force Majeure"><p>Weather, road conditions, natural events, government action, strikes and other events outside reasonable control may disrupt travel. If this happens, we will discuss available alternatives with you; any changes, refunds or additional costs depend on the circumstances and applicable supplier terms.</p></LegalSection>
       <LegalSection title="Website Information and Images"><p>Website descriptions and images are provided for general travel inspiration and may not reflect the exact itinerary, accommodation or vehicle offered to you. Please rely on your written quotation and confirmation for the details of your booking.</p></LegalSection>
       <LegalSection title="Intellectual Property"><p>Content and branding on this website may not be copied, republished or used commercially without permission from the relevant rights holder. Third-party images or materials remain the property of their respective owners.</p></LegalSection>
-      <LegalSection title="Privacy and Personal Information"><p>We use information you provide to respond to enquiries and arrange requested services. Please read our <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a> for more detail.</p></LegalSection>
+      <LegalSection title="Privacy and Personal Information"><p>We use information you provide to respond to enquiries and arrange requested services. Please read our <Link to="/privacy-policy" className="text-primary hover:underline">Privacy Policy</Link> for more detail.</p></LegalSection>
       <LegalSection title="Limitation of Liability"><p>Travel involves risks and may be affected by events or services beyond our direct control. To the extent permitted by applicable law, our responsibility for any issue will depend on the specific services we agreed to provide and the circumstances involved. Nothing in these terms excludes rights or liabilities that cannot lawfully be excluded.</p></LegalSection>
       <LegalSection title="Communication"><p>We may respond to an enquiry or communicate about a requested service using the contact details you provide, including WhatsApp, email or phone. Please ensure those details are correct and let us know if they change.</p></LegalSection>
       <LegalSection title="Third-Party Website Links"><p>Our website may contain links to websites operated by others. Their content and privacy practices are their own; please review their terms before using them.</p></LegalSection>
