@@ -1,4 +1,5 @@
 import { Mail, MessageCircle } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { navLinks, EMAIL_ADDRESS, PHONE_DISPLAY, whatsappLink } from "@/lib/site-data";
 import logoAsset from "@/assets/destinations-planner-logo.png.asset.json";
 
@@ -28,9 +29,9 @@ export function Footer() {
             Explore
           </h2>
           <ul className="mt-4 grid grid-cols-2 gap-2">
-            {navLinks.map((l) => (
+            {navLinks.filter((l) => l.label !== "Stories").map((l) => (
               <li key={l.hash}>
-                <a href={l.hash} className="text-sm hover:text-primary">
+                <a href={`/${l.hash}`} className="text-sm hover:text-primary">
                   {l.label}
                 </a>
               </li>
@@ -44,9 +45,14 @@ export function Footer() {
           </h2>
           <ul className="mt-4 space-y-2">
             <li>
-              <a href="/terms-and-conditions" className="text-sm hover:text-primary">
+               <Link to="/terms-and-conditions" className="text-sm hover:text-primary">
                 Terms & Conditions
-              </a>
+               </Link>
+             </li>
+             <li>
+               <Link to="/privacy-policy" className="text-sm hover:text-primary">
+                 Privacy Policy
+               </Link>
             </li>
           </ul>
         </nav>

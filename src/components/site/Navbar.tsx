@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useLocation } from "@tanstack/react-router";
 import { navLinks } from "@/lib/site-data";
 import logoAsset from "@/assets/destinations-planner-logo.png.asset.json";
 
 export function Navbar() {
+  const isHome = useLocation({ select: (location) => location.pathname === "/" });
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -17,7 +19,7 @@ export function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled || open
+         scrolled || open || !isHome
           ? "bg-background/90 backdrop-blur-md border-b border-border"
           : "bg-transparent"
       }`}
@@ -27,9 +29,9 @@ export function Navbar() {
         className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8"
       >
         <a
-          href="#home"
+          href={isHome ? "#home" : "/#home"}
           className={`flex min-w-0 items-center gap-2.5 font-display text-lg font-semibold ${
-            scrolled || open ? "text-foreground" : "text-primary-foreground"
+            scrolled || open || !isHome ? "text-foreground" : "text-primary-foreground"
           }`}
         >
           <img
@@ -46,9 +48,9 @@ export function Navbar() {
           {navLinks.map((l) => (
             <li key={l.hash}>
               <a
-                href={l.hash}
+                href={isHome ? l.hash : `/${l.hash}`}
                 className={`text-sm font-medium transition-opacity hover:opacity-70 ${
-                  scrolled ? "text-foreground" : "text-primary-foreground"
+                  scrolled || !isHome ? "text-foreground" : "text-primary-foreground"
                 }`}
               >
                 {l.label}
@@ -59,7 +61,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <a
-            href="#enquiry"
+            href={isHome ? "#enquiry" : "/#enquiry"}
             className="hidden rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft transition-transform hover:-translate-y-0.5 sm:inline-flex"
           >
             Plan Your Trip
@@ -70,7 +72,7 @@ export function Navbar() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-border lg:hidden ${
-              scrolled || open ? "text-foreground" : "text-primary-foreground"
+              scrolled || open || !isHome ? "text-foreground" : "text-primary-foreground"
             }`}
           >
             {open ? <Menu className="size-5" aria-hidden="true" style={{ display: "none" }} /> : null}
@@ -85,7 +87,7 @@ export function Navbar() {
             {navLinks.map((l) => (
               <li key={l.hash}>
                 <a
-                  href={l.hash}
+                  href={isHome ? l.hash : `/${l.hash}`}
                   onClick={() => setOpen(false)}
                   className="block py-3 text-base font-medium text-foreground"
                 >
@@ -95,7 +97,7 @@ export function Navbar() {
             ))}
             <li className="py-3">
               <a
-                href="#enquiry"
+                href={isHome ? "#enquiry" : "/#enquiry"}
                 onClick={() => setOpen(false)}
                 className="inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"
               >
