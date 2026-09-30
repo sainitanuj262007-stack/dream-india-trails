@@ -1,172 +1,45 @@
-import type { ReactNode } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Navbar } from "@/components/site/Navbar";
-import { Footer } from "@/components/site/Footer";
-import { Reveal } from "@/components/site/Reveal";
-import { WhatsAppButton } from "@/components/site/WhatsAppButton";
-import { EMAIL_ADDRESS, PHONE_DISPLAY, whatsappLink } from "@/lib/site-data";
-import { ArrowLeft } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { LegalContact, LegalPageLayout, LegalSection } from "@/components/site/LegalPageLayout";
 
 export const Route = createFileRoute("/terms-and-conditions")({
-  head: () => ({
-    meta: [
-      { title: "Terms & Conditions | Destinations Planner" },
-      { name: "description", content: "Booking, cancellation, refund and liability terms for Destinations Planner travel services." },
-      { property: "og:title", content: "Terms & Conditions | Destinations Planner" },
-      { property: "og:description", content: "Booking, cancellation, refund and liability terms for Destinations Planner travel services." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () => ({ meta: [
+    { title: "Terms & Conditions | Destinations Planner" },
+    { name: "description", content: "Read the terms for enquiries, tour packages, car rentals and travel planning with Destinations Planner." },
+    { property: "og:title", content: "Terms & Conditions | Destinations Planner" },
+    { property: "og:description", content: "Terms for enquiries, tour packages, car rentals and travel planning with Destinations Planner." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: TermsAndConditions,
 });
 
-const lastUpdated = "23 September 2026";
-
 function TermsAndConditions() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background">
-      <Navbar />
-      <main className="pt-24 sm:pt-28">
-        <section className="bg-sand px-5 py-14 sm:px-8 sm:py-20">
-          <div className="mx-auto max-w-4xl">
-            <Reveal>
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3"
-              >
-                <ArrowLeft className="size-4" aria-hidden="true" />
-                Back to home
-              </Link>
-              <h1 className="mt-6 text-4xl leading-[1.08] sm:text-5xl">
-                Terms & Conditions
-              </h1>
-              <p className="mt-4 text-sm text-muted-foreground">
-                Last updated: {lastUpdated}
-              </p>
-            </Reveal>
-          </div>
-        </section>
-
-        <section className="px-5 py-12 sm:px-8 sm:py-16">
-          <div className="mx-auto max-w-4xl space-y-12">
-            <Reveal>
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                Please read these terms carefully before booking a trip or service with Destinations Planner. By confirming a booking, you agree to the terms below. If anything is unclear, contact us before you pay.
-              </p>
-            </Reveal>
-
-            <TermsSection title="1. Bookings & Payments">
-              <p>
-                All bookings are confirmed only after we receive the agreed deposit or full payment and send you a written confirmation by email or WhatsApp. Prices quoted are in Indian Rupees (INR) unless stated otherwise and include the services specifically listed in your itinerary.
-              </p>
-              <p>
-                For peak-season travel, festivals, or luxury properties, full or higher advance payment may be required. We will clearly mention this before you confirm.
-              </p>
-            </TermsSection>
-
-            <TermsSection title="2. Cancellation & Refund Policy">
-              <p>
-                Cancellation requests must be sent by email or WhatsApp and are effective from the date and time we acknowledge them. Refunds depend on third-party supplier policies (hotels, airlines, railways, activity providers) and are processed after those amounts are returned to us.
-              </p>
-              <ul className="list-disc space-y-2 pl-5">
-                <li>More than 30 days before departure: cancellation charge is generally limited to non-recoverable supplier costs and a small service fee.</li>
-                <li>15–30 days before departure: up to 50% of the total trip cost may be charged, depending on supplier penalties.</li>
-                <li>Less than 15 days before departure or no-show: most or all of the trip cost may be non-refundable.</li>
-              </ul>
-              <p>
-                We recommend travel insurance to cover unexpected cancellations due to illness, family emergencies, or other disruptions.
-              </p>
-            </TermsSection>
-
-            <TermsSection title="3. Travel Documents">
-              <p>
-                It is your responsibility to hold a valid passport, visa, ID proofs, and any required health certificates for every traveller. We can guide you on requirements, but we are not responsible for denied boarding, deportation, or trip changes caused by incomplete or invalid documents.
-              </p>
-            </TermsSection>
-
-            <TermsSection title="4. Itinerary Changes">
-              <p>
-                Road conditions, weather, local events, supplier availability, and government regulations in India can change quickly. We may need to adjust routes, hotels, or activities to protect your safety or experience. Whenever possible, we will inform you in advance and offer alternatives of similar value.
-              </p>
-              <p>
-                If you request changes after confirmation, extra charges may apply based on supplier policies and availability.
-              </p>
-            </TermsSection>
-
-            <TermsSection title="5. Limitation of Liability">
-              <p>
-                Destinations Planner acts as an intermediary and travel organiser. We take reasonable care in selecting hotels, transport providers, guides, and activity partners, but we are not liable for their independent acts, omissions, accidents, delays, or losses.
-              </p>
-              <p>
-                We are not responsible for losses caused by circumstances beyond our control, including but not limited to natural disasters, political unrest, strikes, pandemics, government orders, or failures in public transport.
-              </p>
-            </TermsSection>
-
-            <TermsSection title="6. Travel Insurance">
-              <p>
-                We strongly recommend that every traveller buys comprehensive travel insurance covering medical emergencies, trip cancellation, baggage loss, and personal accident before departure. We do not sell insurance directly.
-              </p>
-            </TermsSection>
-
-            <TermsSection title="7. Force Majeure">
-              <p>
-                Neither party will be liable for failure or delay in performance due to events outside reasonable control, such as floods, earthquakes, epidemics, war, terrorism, strikes, or government restrictions. In such cases, we will work with suppliers to reschedule or refund recoverable amounts.
-              </p>
-            </TermsSection>
-
-            <TermsSection title="8. Behaviour & Safety">
-              <p>
-                Travellers are expected to behave respectfully toward local people, cultures, wildlife, and heritage sites. We reserve the right to terminate services without refund if a traveller’s behaviour is unsafe, unlawful, or seriously disrupts the group or local community.
-              </p>
-            </TermsSection>
-
-            <TermsSection title="9. Governing Law">
-              <p>
-                These terms are governed by the laws of India. Any dispute will be subject to the exclusive jurisdiction of the courts in Jaipur, Rajasthan, unless otherwise agreed in writing.
-              </p>
-            </TermsSection>
-
-            <TermsSection title="10. Contact Us">
-              <p>
-                If you have questions about these terms, reach us at:
-              </p>
-              <ul className="mt-3 space-y-2 text-muted-foreground">
-                <li>
-                  WhatsApp: {" "}
-                  <a
-                    href={whatsappLink("Hi! I have a question about your Terms & Conditions.")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline"
-                  >
-                    {PHONE_DISPLAY}
-                  </a>
-                </li>
-                <li>
-                  Email: {" "}
-                  <a href={`mailto:${EMAIL_ADDRESS}`} className="text-primary hover:underline">
-                    {EMAIL_ADDRESS}
-                  </a>
-                </li>
-              </ul>
-            </TermsSection>
-          </div>
-        </section>
-      </main>
-      <Footer />
-      <WhatsAppButton />
-    </div>
-  );
-}
-
-function TermsSection({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <Reveal>
-      <article className="space-y-4 leading-relaxed text-foreground">
-        <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
-        <div className="space-y-4 text-muted-foreground">{children}</div>
-      </article>
-    </Reveal>
+    <LegalPageLayout title="TERMS & CONDITIONS">
+      <p className="text-lg leading-8 text-muted-foreground">Please read these Terms & Conditions before using this website or requesting travel services from DESTINATIONS PLANNER. By using this website or contacting us about our services, you acknowledge these terms. A confirmed booking may also be subject to the specific terms shared with you before payment.</p>
+      <LegalSection title="About DESTINATIONS PLANNER"><p>DESTINATIONS PLANNER is a travel agency providing Tour Packages, Car Rental, Customized Travel Planning, Travel Assistance and Enquiry Services across India.</p></LegalSection>
+      <LegalSection title="Website Use"><p>Use this website for lawful personal enquiries and travel planning. Do not misuse its forms, content or services, interfere with its operation, or submit information that you do not have permission to share.</p></LegalSection>
+      <LegalSection title="Travel Enquiries"><p>Submitting an enquiry does not automatically create a booking or guarantee a price, itinerary, vehicle, hotel or availability. We will contact you to discuss your requirements and provide details before any booking is confirmed.</p></LegalSection>
+      <LegalSection title="Tour Packages"><p>Package inclusions, exclusions, dates, accommodation, transport and activities depend on the specific itinerary and quotation shared with you. Please review these details carefully before confirming your trip. Availability may change until your booking is confirmed.</p></LegalSection>
+      <LegalSection title="Car Rental Services"><p>Vehicle type, route, duration, driver arrangements, pickup and drop-off, and any applicable additional charges will be set out in your quotation or booking confirmation. Changes to a route or travel schedule may affect availability and cost.</p></LegalSection>
+      <LegalSection title="Pricing and Payments"><p>Prices and payment requirements will be communicated in your quotation before you confirm. A quoted price applies only to the services listed there and may change if availability, dates, traveller numbers or requirements change. Please check your quotation for payment instructions and included taxes or charges.</p></LegalSection>
+      <LegalSection title="Booking Confirmation"><p>A booking is confirmed only when we explicitly confirm it to you in writing after any required payment and supplier arrangements have been completed. An enquiry, draft itinerary or payment request alone is not a confirmed booking.</p></LegalSection>
+      <LegalSection title="Customer Responsibilities"><p>Please provide accurate traveller details and contact information, review your itinerary and booking details promptly, follow applicable safety instructions and local laws, and tell us about any relevant travel requirements before confirmation.</p></LegalSection>
+      <LegalSection title="Travel Documents and Permissions"><p>Travellers are responsible for checking and obtaining any passports, visas, permits, identification and health documents required for their journey. Requirements can change; please confirm them with official sources before travelling.</p></LegalSection>
+      <LegalSection title="Cancellation and Refunds"><p>Cancellation and refund terms must be confirmed before booking, including any applicable supplier conditions. [ADD YOUR ACTUAL CANCELLATION & REFUND POLICY HERE]</p></LegalSection>
+      <LegalSection title="Changes to Bookings"><p>Let us know as soon as possible if you need to change a confirmed booking. Changes depend on availability and the terms of the relevant providers; any revised price or charge will be explained before you agree to it.</p></LegalSection>
+      <LegalSection title="Third-Party Services"><p>Hotels, transport operators, guides and other travel providers may supply parts of your trip under their own applicable terms. We will share relevant supplier information where available, but their availability and policies may affect your arrangements.</p></LegalSection>
+      <LegalSection title="Travel Disruptions and Force Majeure"><p>Weather, road conditions, natural events, government action, strikes and other events outside reasonable control may disrupt travel. If this happens, we will discuss available alternatives with you; any changes, refunds or additional costs depend on the circumstances and applicable supplier terms.</p></LegalSection>
+      <LegalSection title="Website Information and Images"><p>Website descriptions and images are provided for general travel inspiration and may not reflect the exact itinerary, accommodation or vehicle offered to you. Please rely on your written quotation and confirmation for the details of your booking.</p></LegalSection>
+      <LegalSection title="Intellectual Property"><p>Content and branding on this website may not be copied, republished or used commercially without permission from the relevant rights holder. Third-party images or materials remain the property of their respective owners.</p></LegalSection>
+      <LegalSection title="Privacy and Personal Information"><p>We use information you provide to respond to enquiries and arrange requested services. Please read our <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a> for more detail.</p></LegalSection>
+      <LegalSection title="Limitation of Liability"><p>Travel involves risks and may be affected by events or services beyond our direct control. To the extent permitted by applicable law, our responsibility for any issue will depend on the specific services we agreed to provide and the circumstances involved. Nothing in these terms excludes rights or liabilities that cannot lawfully be excluded.</p></LegalSection>
+      <LegalSection title="Communication"><p>We may respond to an enquiry or communicate about a requested service using the contact details you provide, including WhatsApp, email or phone. Please ensure those details are correct and let us know if they change.</p></LegalSection>
+      <LegalSection title="Third-Party Website Links"><p>Our website may contain links to websites operated by others. Their content and privacy practices are their own; please review their terms before using them.</p></LegalSection>
+      <LegalSection title="Changes to These Terms"><p>We may update these terms from time to time. Changes will be posted on this page with an updated date. Please review the current terms before making a new enquiry or booking.</p></LegalSection>
+      <LegalSection title="Governing Law and Disputes"><p>These terms are subject to applicable law in India. For any dispute about the appropriate court or jurisdiction: [ADD CONFIRMED JURISDICTION / CITY AFTER LEGAL REVIEW]. Please contact us first so we can try to resolve your concern.</p></LegalSection>
+      <LegalSection title="Contact Us"><p>Questions about these terms? Contact us:</p><LegalContact /></LegalSection>
+      <LegalSection title="Acceptance"><p>By continuing to use this website or requesting our services, you acknowledge that you have read these terms. Booking-specific terms will be shared before you confirm and pay for a booking.</p></LegalSection>
+    </LegalPageLayout>
   );
 }

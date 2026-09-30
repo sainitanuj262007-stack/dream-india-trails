@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
+import { EMAIL_ADDRESS, PHONE_DISPLAY, whatsappLink } from "@/lib/site-data";
 
 export function LegalPageLayout({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -35,5 +36,15 @@ export function LegalSection({ title, children }: { title: string; children: Rea
       <h2 id={title.toLowerCase().replace(/[^a-z0-9]+/g, "-")} className="text-2xl leading-snug sm:text-3xl">{title}</h2>
       <div className="mt-4 space-y-4 text-base leading-7 text-muted-foreground">{children}</div>
     </section>
+  );
+}
+
+export function LegalContact({ address = false }: { address?: boolean }) {
+  return (
+    <ul className="space-y-2">
+      <li>WhatsApp: <a href={whatsappLink("Hi! I have a question for Destinations Planner.")} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{PHONE_DISPLAY}</a></li>
+      <li>Email: <a href={`mailto:${EMAIL_ADDRESS}`} className="text-primary hover:underline">{EMAIL_ADDRESS}</a></li>
+      {address && <li>Business address: [ADD BUSINESS ADDRESS IF REQUIRED]</li>}
+    </ul>
   );
 }
