@@ -49,7 +49,7 @@ function Index() {
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Explore Destinations Planner</p>
             <h2 id="explore-heading" className="mt-4 max-w-2xl text-4xl leading-[1.08] sm:text-5xl">Your India journey, your way.</h2>
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {[
+              {([
                 ["About", "Thoughtful journeys, planned around you.", "/about"],
                 ["Services", "Tour packages and comfortable car rentals.", "/services"],
                 ["Destinations", "Explore the places that stay with you.", "/destinations"],
