@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import heroImage from "@/assets/hero-india.jpg";
 import heroVideo from "@/assets/hero-india.mp4.asset.json";
 
@@ -42,18 +43,18 @@ export function Hero() {
           groups and visitors from abroad — planned by people who know India.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <a
-            href="#enquiry"
+          <Link
+            to="/contact"
             className="inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-7 text-sm font-semibold text-primary-foreground shadow-card transition-transform hover:-translate-y-0.5"
           >
             Plan Your Trip
-          </a>
-          <a
-            href="#destinations"
+          </Link>
+          <Link
+            to="/destinations"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/50 bg-white/10 px-7 text-sm font-semibold text-primary-foreground backdrop-blur-sm transition-colors hover:bg-white/20"
           >
             Explore Destinations
-          </a>
+          </Link>
         </div>
       </div>
     </section>

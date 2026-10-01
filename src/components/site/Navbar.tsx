@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { useLocation } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { navLinks } from "@/lib/site-data";
 import logoAsset from "@/assets/destinations-planner-logo.png.asset.json";
 
@@ -28,8 +28,8 @@ export function Navbar() {
         aria-label="Main navigation"
         className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8"
       >
-        <a
-          href={isHome ? "#home" : "/#home"}
+        <Link
+          to="/"
           className={`flex min-w-0 items-center gap-2.5 font-display text-lg font-semibold ${
             scrolled || open || !isHome ? "text-foreground" : "text-primary-foreground"
           }`}
@@ -42,30 +42,31 @@ export function Navbar() {
             className="size-11 shrink-0 object-contain"
           />
           <span className="truncate">Destinations Planner</span>
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-7 lg:flex">
           {navLinks.map((l) => (
-            <li key={l.hash}>
-              <a
-                href={isHome ? l.hash : `/${l.hash}`}
+            <li key={l.to}>
+              <Link
+                to={l.to}
+                activeProps={{ "aria-current": "page" }}
                 className={`text-sm font-medium transition-opacity hover:opacity-70 ${
                   scrolled || !isHome ? "text-foreground" : "text-primary-foreground"
                 }`}
               >
                 {l.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
         <div className="flex items-center gap-2">
-          <a
-            href={isHome ? "#enquiry" : "/#enquiry"}
+          <Link
+            to="/contact"
             className="hidden rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft transition-transform hover:-translate-y-0.5 sm:inline-flex"
           >
             Plan Your Trip
-          </a>
+          </Link>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -75,7 +76,6 @@ export function Navbar() {
               scrolled || open || !isHome ? "text-foreground" : "text-primary-foreground"
             }`}
           >
-            {open ? <Menu className="size-5" aria-hidden="true" style={{ display: "none" }} /> : null}
             {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
           </button>
         </div>
@@ -85,24 +85,24 @@ export function Navbar() {
         <div className="border-t border-border bg-background lg:hidden">
           <ul className="mx-auto max-w-7xl px-5 py-3 sm:px-8">
             {navLinks.map((l) => (
-              <li key={l.hash}>
-                <a
-                  href={isHome ? l.hash : `/${l.hash}`}
+              <li key={l.to}>
+                <Link
+                  to={l.to}
                   onClick={() => setOpen(false)}
                   className="block py-3 text-base font-medium text-foreground"
                 >
                   {l.label}
-                </a>
+                </Link>
               </li>
             ))}
             <li className="py-3">
-              <a
-                href={isHome ? "#enquiry" : "/#enquiry"}
+              <Link
+                to="/contact"
                 onClick={() => setOpen(false)}
                 className="inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"
               >
                 Plan Your Trip
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -29,11 +29,11 @@ export function Footer() {
             Explore
           </h2>
           <ul className="mt-4 grid grid-cols-2 gap-2">
-            {navLinks.filter((l) => l.label !== "Stories").map((l) => (
-              <li key={l.hash}>
-                <a href={`/${l.hash}`} className="text-sm hover:text-primary">
+            {navLinks.map((l) => (
+              <li key={l.to}>
+                <Link to={l.to} className="text-sm hover:text-primary">
                   {l.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

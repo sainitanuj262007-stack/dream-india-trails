@@ -64,7 +64,7 @@ function ThankYouPage() {
               Open WhatsApp
             </a>
             <Link
-              to="/"
+              to="/destinations"
               className="inline-flex min-h-12 items-center justify-center rounded-full border border-border px-7 text-sm font-semibold transition-colors hover:bg-accent"
             >
               Explore Destinations
