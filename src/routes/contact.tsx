@@ -24,7 +24,7 @@ function ContactPage() {
             <Reveal>
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Let’s make a plan</p>
               <h1 className="mt-4 text-4xl leading-[1.08] sm:text-5xl">Tell us what India looks like to you.</h1>
-              <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">Share a few details and we’ll come back with ideas that feel like your kind of trip. No pressure, no generic brochures.</p>
+              <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">Share a few details, then send your enquiry through WhatsApp. We’ll come back with ideas that feel like your kind of trip.</p>
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold"><span className="inline-flex items-center gap-2"><Check className="size-4 text-teal" aria-hidden="true" />Thoughtful advice</span><span className="inline-flex items-center gap-2"><Check className="size-4 text-teal" aria-hidden="true" />Quick response</span></div>
             </Reveal>
             <Reveal delay={120}><EnquiryForm /></Reveal>

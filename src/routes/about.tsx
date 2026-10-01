@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SitePageLayout } from "@/components/site/SitePageLayout";
 import { Reveal } from "@/components/site/Reveal";
 import { ArrowUpRight, Sparkles, ShieldCheck, Headphones, Users } from "lucide-react";
@@ -31,9 +31,9 @@ function AboutPage() {
               <p className="mt-5 max-w-2xl leading-relaxed text-muted-foreground">
                 Whether it is your first visit or your tenth, your trip is planned by a real travel specialist who listens first, knows the details and stays close throughout.
               </p>
-              <a href="/contact" className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-primary hover:gap-3">
+              <Link to="/contact" className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-primary hover:gap-3">
                 Start planning your India <ArrowUpRight className="size-4" aria-hidden="true" />
-              </a>
+              </Link>
             </Reveal>
           </div>
         </section>

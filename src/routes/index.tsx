@@ -56,8 +56,8 @@ function Index() {
                 ["Travel Stories", "Find inspiration for your next journey.", "/stories"],
                 ["Reviews", "Hear from fellow travellers.", "/reviews"],
                 ["Contact", "Let's plan your next trip together.", "/contact"],
-              ].map(([title, description, to]) => (
-                <Link key={to} to={to as "/about" | "/services" | "/destinations" | "/stories" | "/reviews" | "/contact"} className="group border-t border-border py-5 transition-colors hover:text-primary">
+              ] as const).map(([title, description, to]) => (
+                <Link key={to} to={to} className="group border-t border-border py-5 transition-colors hover:text-primary">
                   <span className="flex items-center justify-between gap-4 font-display text-2xl">{title}<ArrowUpRight className="size-5 shrink-0" aria-hidden="true" /></span>
                   <span className="mt-2 block text-sm text-muted-foreground">{description}</span>
                 </Link>

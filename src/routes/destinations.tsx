@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SitePageLayout } from "@/components/site/SitePageLayout";
 import { Reveal } from "@/components/site/Reveal";
 import { ArrowUpRight } from "lucide-react";
@@ -26,12 +26,12 @@ function DestinationsPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Explore India</p>
                 <h1 className="mt-4 text-4xl leading-[1.08] sm:text-5xl">Where will your story begin?</h1>
               </Reveal>
-              <Reveal delay={100}><a href="/contact" className="inline-flex items-center gap-2 text-sm font-bold text-primary">Build my itinerary <ArrowUpRight className="size-4" aria-hidden="true" /></a></Reveal>
+              <Reveal delay={100}><Link to="/contact" className="inline-flex items-center gap-2 text-sm font-bold text-primary">Build my itinerary <ArrowUpRight className="size-4" aria-hidden="true" /></Link></Reveal>
             </div>
             <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
               {destinations.map((destination, index) => (
                 <Reveal key={destination.name} delay={(index % 5) * 60}>
-                  <a href="/contact" className="group relative block aspect-[0.82] overflow-hidden rounded-xl bg-muted">
+                  <Link to="/contact" className="group relative block aspect-[0.82] overflow-hidden rounded-xl bg-muted">
                     <img src={destination.image} alt={`${destination.name}, ${destination.region}`} width={500} height={610} className="size-full object-cover transition duration-700 group-hover:scale-110" loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/10 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 p-4 text-primary-foreground">
@@ -39,7 +39,7 @@ function DestinationsPage() {
                       <h3 className="mt-1 font-sans text-base font-bold tracking-normal">{destination.name}</h3>
                       <p className="mt-1 hidden text-xs leading-relaxed text-primary-foreground/75 sm:block">{destination.blurb}</p>
                     </div>
-                  </a>
+                  </Link>
                 </Reveal>
               ))}
             </div>
