@@ -50,14 +50,14 @@ export const destinations: Destination[] = [
 ];
 
 export const navLinks = [
-  { label: "Home", hash: "#home" },
-  { label: "About", hash: "#about" },
-  { label: "Services", hash: "#services" },
-  { label: "Destinations", hash: "#destinations" },
-  { label: "Stories", hash: "#stories" },
-  { label: "Reviews", hash: "#reviews" },
-  { label: "Contact", hash: "#enquiry" },
-];
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Destinations", to: "/destinations" },
+  { label: "Stories", to: "/stories" },
+  { label: "Reviews", to: "/reviews" },
+  { label: "Contact", to: "/contact" },
+] as const;
 
 /* Sample guest reviews — replace with real testimonials when you have them. */
 export const testimonials = [
