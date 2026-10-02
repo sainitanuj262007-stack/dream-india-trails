@@ -17,7 +17,7 @@ export function LegalPageLayout({ title, lastUpdated = "[ADD DATE]", children }:
               <ArrowLeft className="size-4" aria-hidden="true" /> Back to home
             </Link>
             <h1 className="mt-5 text-4xl leading-tight sm:text-5xl">{title}</h1>
-            <p className="mt-4 text-sm text-muted-foreground">Last Updated: [ADD DATE]</p>
+            <p className="mt-4 text-sm text-muted-foreground">Last Updated: {lastUpdated}</p>
           </div>
         </header>
         <div className="mx-auto max-w-4xl space-y-9 px-5 py-12 sm:px-8 sm:py-16">
