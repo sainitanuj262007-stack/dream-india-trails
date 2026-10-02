@@ -6,7 +6,7 @@ import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { EMAIL_ADDRESS, PHONE_DISPLAY, whatsappLink } from "@/lib/site-data";
 
-export function LegalPageLayout({ title, children }: { title: string; children: ReactNode }) {
+export function LegalPageLayout({ title, lastUpdated = "[ADD DATE]", children }: { title: string; lastUpdated?: string; children: ReactNode }) {
   return (
     <div className="min-h-screen overflow-x-hidden bg-background">
       <Navbar />
