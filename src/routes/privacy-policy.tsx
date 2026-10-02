@@ -15,7 +15,7 @@ export const Route = createFileRoute("/privacy-policy")({
 
 function PrivacyPolicy() {
   return (
-    <LegalPageLayout title="PRIVACY POLICY">
+    <LegalPageLayout title="PRIVACY POLICY" lastUpdated="02-08-2026">
       <p className="text-lg leading-8 text-muted-foreground">This policy explains how DESTINATIONS PLANNER handles information you share when you contact us, use this website or request travel services. Please contact us if you have questions about your information.</p>
       <LegalSection title="Information We Collect"><p>When you send an enquiry, you may provide your name, WhatsApp or phone number, email address, travel plans and other details you choose to share. Basic technical information about your visit, such as device or browser details, may also be processed where applicable to operate the website.</p></LegalSection>
       <LegalSection title="How We Use Your Information"><p>We use the information to respond to enquiries, discuss and provide requested travel services, communicate about bookings, and improve our website and services. Information you send in an enquiry helps us prepare relevant travel options.</p></LegalSection>
