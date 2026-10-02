@@ -15,7 +15,7 @@ export const Route = createFileRoute("/terms-and-conditions")({
 
 function TermsAndConditions() {
   return (
-    <LegalPageLayout title="TERMS & CONDITIONS">
+    <LegalPageLayout title="TERMS & CONDITIONS" lastUpdated="02-08-2026">
       <p className="text-lg leading-8 text-muted-foreground">Please read these Terms & Conditions before using this website or requesting travel services from DESTINATIONS PLANNER. By using this website or contacting us about our services, you acknowledge these terms. A confirmed booking may also be subject to the specific terms shared with you before payment.</p>
       <LegalSection title="About DESTINATIONS PLANNER"><p>DESTINATIONS PLANNER is a travel agency providing Tour Packages, Car Rental, Customized Travel Planning, Travel Assistance and Enquiry Services across India.</p></LegalSection>
       <LegalSection title="Website Use"><p>Use this website for lawful personal enquiries and travel planning. Do not misuse its forms, content or services, interfere with its operation, or submit information that you do not have permission to share.</p></LegalSection>
