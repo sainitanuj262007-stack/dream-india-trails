@@ -109,13 +109,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','${GTM_ID}');`;
 
+// Google Ads conversion tracking: AW-18400264399 (gtag.js)
+const GOOGLE_ADS_ID = "AW-18400264399";
+const GOOGLE_ADS_SCRIPT = `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GOOGLE_ADS_ID}');`;
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: GTM_SCRIPT }} />
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`} />
+        <script dangerouslySetInnerHTML={{ __html: GOOGLE_ADS_SCRIPT }} />
       </head>
+
       <body>
         <noscript>
           <iframe
