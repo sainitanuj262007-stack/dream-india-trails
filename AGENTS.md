@@ -12,3 +12,4 @@
 - Keep verified contact details in `src/lib/site-data.ts` as the single source for all contact links and legal pages, so updates stay consistent.
 - Use `LegalPageLayout` and `LegalSection` for legal routes, so their accessibility and styling stay aligned.
 - Use `SitePageLayout` for non-legal content routes and keep the homepage focused on its hero and travel highlights, so each main navigation item is a shareable page.
+- Keep site-wide arrival prompts in the root route and source their contact destinations from `src/lib/site-data.ts`, so every page shares the same actions and verified contact details.
