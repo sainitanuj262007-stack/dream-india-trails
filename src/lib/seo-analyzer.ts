@@ -1,7 +1,7 @@
 // Pure, isomorphic on-page SEO analyzer for meta title, meta description and
 // headings. No network access, no framework code — safe to unit-test.
 
-export type FindingStatus = "passed" | "needs_improvement" | "issue";
+export type FindingStatus = "passed" | "needs_improvement" | "issue" | "not_checked";
 
 export interface Heading {
   level: number; // 1–6
