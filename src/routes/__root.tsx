@@ -11,18 +11,15 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
-import { ArrivalContactPopup } from "@/components/site/ArrivalContactPopup";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
+        <h1 className="text-6xl font-bold text-foreground">404</h1>
+        <h2 className="mt-4 text-lg font-semibold text-foreground">Page not found</h2>
+        <p className="mt-2 text-sm text-muted-foreground">The page you're looking for doesn't exist.</p>
         <div className="mt-6">
           <Link
             to="/"
@@ -40,18 +37,14 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error instanceof Error ? error : new Error(String(error)), { boundary: "tanstack_root_error_component" });
+    if (error instanceof Error) reportError(error);
   }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
+        <h1 className="text-xl font-semibold tracking-tight text-foreground">Something went wrong</h1>
+        <p className="mt-2 text-sm text-muted-foreground">You can try again or head back to the dashboard.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
@@ -79,21 +72,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Destinations Planner | India Travel, Your Way" },
-      { name: "description", content: "Thoughtfully planned India holidays, private tours and comfortable car rentals." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Destinations Planner | India Travel, Your Way" },
-      { property: "og:description", content: "Thoughtfully planned India holidays, private tours and comfortable car rentals." },
+      { title: "OnPagePro | Multi-Website On-Page SEO" },
+      {
+        name: "description",
+        content:
+          "Analyze meta titles, descriptions and headings across all your websites. Get scores, AI suggestions and export-ready recommendations.",
+      },
+      { property: "og:title", content: "OnPagePro | Multi-Website On-Page SEO" },
+      {
+        property: "og:description",
+        content: "On-page SEO audits for meta titles, descriptions and headings across multiple websites.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap",
       },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
+    ],
+    scripts: [
+      {
+        // Set theme class before first paint to avoid a flash of the wrong theme.
+        children: `try{var t=localStorage.getItem("onpagepro.theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}`,
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -102,43 +109,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-// Google Tag Manager: GTM-TF58W7QX (head inline script + body noscript fallback)
-const GTM_ID = "GTM-TF58W7QX";
-const GTM_SCRIPT = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${GTM_ID}');`;
-
-// Google Ads conversion tracking: AW-18400264399 (gtag.js)
-const GOOGLE_ADS_ID = "AW-18400264399";
-const GOOGLE_ADS_SCRIPT = `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${GOOGLE_ADS_ID}');`;
-
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
         <HeadContent />
-        <script dangerouslySetInnerHTML={{ __html: GTM_SCRIPT }} />
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`} />
-        <script dangerouslySetInnerHTML={{ __html: GOOGLE_ADS_SCRIPT }} />
       </head>
-
-      <body>
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-        {children}
-        <Scripts />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
@@ -148,9 +125,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
-      <ArrivalContactPopup />
+      <Toaster />
     </QueryClientProvider>
   );
 }
