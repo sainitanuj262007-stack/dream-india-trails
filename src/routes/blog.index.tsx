@@ -17,7 +17,10 @@ export const Route = createFileRoute("/blog/")({
 });
 
 function BlogListing() {
-  const [featured, ...rest] = blogPosts;
+  const featured = blogPosts[0];
+  const rest = blogPosts.slice(1);
+  if (!featured) return null;
+
 
   return (
     <SitePageLayout>

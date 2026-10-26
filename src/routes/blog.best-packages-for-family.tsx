@@ -297,8 +297,8 @@ function FamilyPackagesArticle() {
                   </div>
                 ) : (
                   <img
-                    src={d.images[0].src}
-                    alt={d.images[0].alt}
+                    src={d.images[0]!.src}
+                    alt={d.images[0]!.alt}
                     width={1600}
                     height={912}
                     loading="lazy"
