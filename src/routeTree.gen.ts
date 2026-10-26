@@ -20,6 +20,8 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogBestPackagesForFamilyRouteImport } from './routes/blog.best-packages-for-family'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,11 +78,22 @@ const ThankYouRoute = ThankYouRouteImport.update({
   path: '/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogBestPackagesForFamilyRoute =
+  BlogBestPackagesForFamilyRouteImport.update({
+    id: '/best-packages-for-family',
+    path: '/best-packages-for-family',
+    getParentRoute: () => BlogRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/destinations': typeof DestinationsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -89,11 +102,12 @@ export interface FileRoutesByFullPath {
   '/stories': typeof StoriesRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
+  '/blog/best-packages-for-family': typeof BlogBestPackagesForFamilyRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/destinations': typeof DestinationsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -102,12 +116,14 @@ export interface FileRoutesByTo {
   '/stories': typeof StoriesRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
+  '/blog/best-packages-for-family': typeof BlogBestPackagesForFamilyRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/destinations': typeof DestinationsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -116,6 +132,8 @@ export interface FileRoutesById {
   '/stories': typeof StoriesRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
+  '/blog/best-packages-for-family': typeof BlogBestPackagesForFamilyRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,11 +149,12 @@ export interface FileRouteTypes {
     | '/stories'
     | '/terms-and-conditions'
     | '/thank-you'
+    | '/blog/best-packages-for-family'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/blog'
     | '/contact'
     | '/destinations'
     | '/privacy-policy'
@@ -144,6 +163,8 @@ export interface FileRouteTypes {
     | '/stories'
     | '/terms-and-conditions'
     | '/thank-you'
+    | '/blog/best-packages-for-family'
+    | '/blog'
   id:
     | '__root__'
     | '/'
@@ -157,12 +178,14 @@ export interface FileRouteTypes {
     | '/stories'
     | '/terms-and-conditions'
     | '/thank-you'
+    | '/blog/best-packages-for-family'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  BlogRoute: typeof BlogRoute
+  BlogRoute: typeof BlogRouteWithChildren
   ContactRoute: typeof ContactRoute
   DestinationsRoute: typeof DestinationsRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
@@ -252,13 +275,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/best-packages-for-family': {
+      id: '/blog/best-packages-for-family'
+      path: '/best-packages-for-family'
+      fullPath: '/blog/best-packages-for-family'
+      preLoaderRoute: typeof BlogBestPackagesForFamilyRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
+
+interface BlogRouteChildren {
+  BlogBestPackagesForFamilyRoute: typeof BlogBestPackagesForFamilyRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogBestPackagesForFamilyRoute: BlogBestPackagesForFamilyRoute,
+  BlogIndexRoute: BlogIndexRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  BlogRoute: BlogRoute,
+  BlogRoute: BlogRouteWithChildren,
   ContactRoute: ContactRoute,
   DestinationsRoute: DestinationsRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
