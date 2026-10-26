@@ -21,6 +21,7 @@ import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogBestPackagesForFamilyRouteImport } from './routes/blog.best-packages-for-family'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,6 +83,12 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/',
   getParentRoute: () => BlogRoute,
 } as any)
+const BlogBestPackagesForFamilyRoute =
+  BlogBestPackagesForFamilyRouteImport.update({
+    id: '/best-packages-for-family',
+    path: '/best-packages-for-family',
+    getParentRoute: () => BlogRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/stories': typeof StoriesRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
+  '/blog/best-packages-for-family': typeof BlogBestPackagesForFamilyRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
@@ -108,6 +116,7 @@ export interface FileRoutesByTo {
   '/stories': typeof StoriesRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
+  '/blog/best-packages-for-family': typeof BlogBestPackagesForFamilyRoute
   '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
@@ -123,6 +132,7 @@ export interface FileRoutesById {
   '/stories': typeof StoriesRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
+  '/blog/best-packages-for-family': typeof BlogBestPackagesForFamilyRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/terms-and-conditions'
     | '/thank-you'
+    | '/blog/best-packages-for-family'
     | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/terms-and-conditions'
     | '/thank-you'
+    | '/blog/best-packages-for-family'
     | '/blog'
   id:
     | '__root__'
@@ -166,6 +178,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/terms-and-conditions'
     | '/thank-you'
+    | '/blog/best-packages-for-family'
     | '/blog/'
   fileRoutesById: FileRoutesById
 }
@@ -269,14 +282,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/blog/best-packages-for-family': {
+      id: '/blog/best-packages-for-family'
+      path: '/best-packages-for-family'
+      fullPath: '/blog/best-packages-for-family'
+      preLoaderRoute: typeof BlogBestPackagesForFamilyRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
 
 interface BlogRouteChildren {
+  BlogBestPackagesForFamilyRoute: typeof BlogBestPackagesForFamilyRoute
   BlogIndexRoute: typeof BlogIndexRoute
 }
 
 const BlogRouteChildren: BlogRouteChildren = {
+  BlogBestPackagesForFamilyRoute: BlogBestPackagesForFamilyRoute,
   BlogIndexRoute: BlogIndexRoute,
 }
 
