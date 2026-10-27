@@ -39,8 +39,7 @@ function BlogListing() {
 
           <Reveal delay={120}>
             <Link
-              to="/blog/$slug"
-              params={{ slug: featured.slug }}
+              to={featured.slug === "best-packages-for-family" ? "/blog/best-packages-for-family" : "/blog"}
               className="group mt-14 grid overflow-hidden rounded-2xl bg-card shadow-card md:grid-cols-2"
             >
               <div className="relative min-h-[280px] overflow-hidden md:min-h-[420px]">
@@ -72,8 +71,7 @@ function BlogListing() {
               {rest.map((post) => (
                 <Reveal key={post.slug}>
                   <Link
-                    to="/blog/$slug"
-                    params={{ slug: post.slug }}
+                    to={post.slug === "best-packages-for-family" ? "/blog/best-packages-for-family" : "/blog"}
                     className="group flex h-full flex-col overflow-hidden rounded-2xl bg-card shadow-soft"
                   >
                     <div className="relative aspect-[16/10] overflow-hidden">
