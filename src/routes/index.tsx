@@ -5,6 +5,36 @@ import { Hero } from "@/components/site/Hero";
 import { Navbar } from "@/components/site/Navbar";
 import { Reveal } from "@/components/site/Reveal";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
+import { EMAIL_ADDRESS, WHATSAPP_NUMBER } from "@/lib/site-data";
+
+const SITE_URL = "https://dream-india-trails.lovable.app";
+
+/* Organization (travel agency) schema — real contact details only. */
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  name: "Destinations Planner",
+  url: SITE_URL,
+  logo: `${SITE_URL}/favicon.png`,
+  email: EMAIL_ADDRESS,
+  telephone: `+${WHATSAPP_NUMBER}`,
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: `+${WHATSAPP_NUMBER}`,
+      email: EMAIL_ADDRESS,
+      availableLanguage: ["English", "Hindi"],
+    },
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Destinations Planner",
+  url: SITE_URL,
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -15,6 +45,10 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Thoughtfully planned India holidays, private tours and comfortable car rentals for travellers who want to see India beautifully." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(organizationSchema) },
+      { type: "application/ld+json", children: JSON.stringify(websiteSchema) },
     ],
   }),
   component: Index,
