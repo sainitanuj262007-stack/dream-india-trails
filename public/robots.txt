@@ -1,8 +1,37 @@
+# Irrelevant internal pages and file types are blocked for all crawlers.
+# /thank-you is a post-enquiry confirmation page — not useful in search results.
+
 User-agent: Googlebot
 Allow: /
+Disallow: /thank-you
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.docx$
+Disallow: /*.xls$
+Disallow: /*.xlsx$
+Disallow: /*.ppt$
+Disallow: /*.pptx$
+Disallow: /*.zip$
+Disallow: /*.rar$
+Disallow: /*.7z$
+Disallow: /*.csv$
+Disallow: /*.json$
 
 User-agent: Bingbot
 Allow: /
+Disallow: /thank-you
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.docx$
+Disallow: /*.xls$
+Disallow: /*.xlsx$
+Disallow: /*.ppt$
+Disallow: /*.pptx$
+Disallow: /*.zip$
+Disallow: /*.rar$
+Disallow: /*.7z$
+Disallow: /*.csv$
+Disallow: /*.json$
 
 User-agent: Twitterbot
 Allow: /
@@ -12,3 +41,18 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /thank-you
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.docx$
+Disallow: /*.xls$
+Disallow: /*.xlsx$
+Disallow: /*.ppt$
+Disallow: /*.pptx$
+Disallow: /*.zip$
+Disallow: /*.rar$
+Disallow: /*.7z$
+Disallow: /*.csv$
+Disallow: /*.json$
+
+Sitemap: https://dream-india-trails.lovable.app/sitemap.xml
